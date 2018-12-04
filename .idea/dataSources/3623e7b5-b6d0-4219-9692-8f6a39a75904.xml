@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="NewPersistenceUnit/OpenJPA">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.4">
+    <root id="1"/>
+    <database id="2" parent="1" name="phoneTalking">
+      <ObjectId>16393</ObjectId>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </database>
+    <database id="3" parent="1" name="postgres">
+      <ObjectId>12401</ObjectId>
+    </database>
+    <schema id="4" parent="2" name="public">
+      <ObjectId>2200</ObjectId>
+      <IntrospectionTimestamp>2018-12-02.22:49:03.813</IntrospectionTimestamp>
+      <IntrospectionStateNumber>580</IntrospectionStateNumber>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="5" parent="2" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+    </schema>
+    <schema id="6" parent="2" name="pg_toast">
+      <ObjectId>99</ObjectId>
+    </schema>
+    <schema id="7" parent="2" name="pg_temp_1">
+      <ObjectId>11848</ObjectId>
+    </schema>
+    <schema id="8" parent="2" name="pg_toast_temp_1">
+      <ObjectId>11849</ObjectId>
+    </schema>
+    <schema id="9" parent="2" name="information_schema">
+      <ObjectId>12113</ObjectId>
+    </schema>
+    <schema id="10" parent="2" name="phoneTalking">
+      <ObjectId>16394</ObjectId>
+    </schema>
+    <sequence id="11" parent="4" name="abonent_abonentid_seq">
+      <ObjectId>16638</ObjectId>
+      <StateNumber>580</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="12" parent="4" name="city_cityid_seq">
+      <ObjectId>16650</ObjectId>
+      <StateNumber>580</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="13" parent="4" name="discount_cityid_seq">
+      <ObjectId>16697</ObjectId>
+      <StateNumber>580</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="14" parent="4" name="discount_discountid_seq">
+      <ObjectId>16695</ObjectId>
+      <StateNumber>580</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="15" parent="4" name="talking_abonentid_seq">
+      <ObjectId>16673</ObjectId>
+      <StateNumber>580</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="16" parent="4" name="talking_cityid_seq">
+      <ObjectId>16675</ObjectId>
+      <StateNumber>580</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="17" parent="4" name="talking_talkid_seq">
+      <ObjectId>16671</ObjectId>
+      <StateNumber>580</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="18" parent="4" name="tarif_cityid_seq">
+      <ObjectId>16658</ObjectId>
+      <StateNumber>580</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <table id="19" parent="4" name="abonent">
+      <ObjectId>16640</ObjectId>
+      <StateNumber>580</StateNumber>
+    </table>
+    <table id="20" parent="4" name="city">
+      <ObjectId>16652</ObjectId>
+      <StateNumber>580</StateNumber>
+    </table>
+    <table id="21" parent="4" name="discount">
+      <ObjectId>16699</ObjectId>
+      <StateNumber>580</StateNumber>
+    </table>
+    <table id="22" parent="4" name="talking">
+      <ObjectId>16677</ObjectId>
+      <StateNumber>580</StateNumber>
+    </table>
+    <table id="23" parent="4" name="tarif">
+      <ObjectId>16660</ObjectId>
+      <StateNumber>580</StateNumber>
+    </table>
+    <table id="24" parent="4" name="users">
+      <ObjectId>16711</ObjectId>
+      <StateNumber>580</StateNumber>
+    </table>
+    <column id="25" parent="19" name="abonentid">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+      <SequenceName>abonent_abonentid_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;abonent_abonentid_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="26" parent="19" name="phone">
+      <Position>2</Position>
+      <DataType>varchar(11)|0</DataType>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="27" parent="19" name="fio">
+      <Position>3</Position>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="28" parent="19" name="address">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="29" parent="19" name="passport">
+      <Position>5</Position>
+      <DataType>varchar(10)|0</DataType>
+      <StateNumber>580</StateNumber>
+    </column>
+    <index id="30" parent="19" name="abonent_pkey">
+      <ObjectId>16644</ObjectId>
+      <ColNames>abonentid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="31" parent="19" name="abonent_phone_key">
+      <ObjectId>16646</ObjectId>
+      <ColNames>phone</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="32" parent="19" name="abonent_passport_key">
+      <ObjectId>16648</ObjectId>
+      <ColNames>passport</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="33" parent="19" name="abonent_pkey">
+      <ObjectId>16645</ObjectId>
+      <ColNames>abonentid</ColNames>
+      <UnderlyingIndexName>abonent_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="34" parent="19" name="abonent_phone_key">
+      <ObjectId>16647</ObjectId>
+      <ColNames>phone</ColNames>
+      <UnderlyingIndexName>abonent_phone_key</UnderlyingIndexName>
+    </key>
+    <key id="35" parent="19" name="abonent_passport_key">
+      <ObjectId>16649</ObjectId>
+      <ColNames>passport</ColNames>
+      <UnderlyingIndexName>abonent_passport_key</UnderlyingIndexName>
+    </key>
+    <column id="36" parent="20" name="cityid">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+      <SequenceName>city_cityid_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;city_cityid_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="37" parent="20" name="cityname">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+    </column>
+    <index id="38" parent="20" name="city_pkey">
+      <ObjectId>16656</ObjectId>
+      <ColNames>cityid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="39" parent="20" name="city_pkey">
+      <ObjectId>16657</ObjectId>
+      <ColNames>cityid</ColNames>
+      <UnderlyingIndexName>city_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="40" parent="21" name="discountid">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+      <SequenceName>discount_discountid_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;discount_discountid_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="41" parent="21" name="duration">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="42" parent="21" name="amountdiscount">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="43" parent="21" name="cityid">
+      <Position>4</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+      <SequenceName>discount_cityid_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;discount_cityid_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <index id="44" parent="21" name="discount_pkey">
+      <ObjectId>16704</ObjectId>
+      <ColNames>discountid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="45" parent="21" name="discount_pkey">
+      <ObjectId>16705</ObjectId>
+      <ColNames>discountid</ColNames>
+      <UnderlyingIndexName>discount_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="46" parent="21" name="discount_cityid_fkey">
+      <ObjectId>16706</ObjectId>
+      <ColNames>cityid</ColNames>
+      <RefTableId>16652</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>city</RefTableName>
+      <RefKeyName>city_pkey</RefKeyName>
+      <RefColNames>cityid</RefColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+    </foreign-key>
+    <column id="47" parent="22" name="talkid">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+      <SequenceName>talking_talkid_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;talking_talkid_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="48" parent="22" name="abonentid">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+      <SequenceName>talking_abonentid_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;talking_abonentid_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="49" parent="22" name="cost">
+      <Position>3</Position>
+      <DataType>real|0</DataType>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="50" parent="22" name="cityid">
+      <Position>4</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+      <SequenceName>talking_cityid_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;talking_cityid_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="51" parent="22" name="kolmin">
+      <Position>5</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="52" parent="22" name="talkdate">
+      <Position>6</Position>
+      <DataType>date|0</DataType>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="53" parent="22" name="talktime">
+      <Position>7</Position>
+      <DataType>time(6)|0</DataType>
+      <StateNumber>580</StateNumber>
+    </column>
+    <index id="54" parent="22" name="talking_pkey">
+      <ObjectId>16683</ObjectId>
+      <ColNames>talkid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="55" parent="22" name="talking_pkey">
+      <ObjectId>16684</ObjectId>
+      <ColNames>talkid</ColNames>
+      <UnderlyingIndexName>talking_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="56" parent="22" name="talking_abonentid_fkey">
+      <ObjectId>16685</ObjectId>
+      <ColNames>abonentid</ColNames>
+      <RefTableId>16640</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>abonent</RefTableName>
+      <RefKeyName>abonent_pkey</RefKeyName>
+      <RefColNames>abonentid</RefColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+    </foreign-key>
+    <foreign-key id="57" parent="22" name="talking_cityid_fkey">
+      <ObjectId>16690</ObjectId>
+      <ColNames>cityid</ColNames>
+      <RefTableId>16652</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>city</RefTableName>
+      <RefKeyName>city_pkey</RefKeyName>
+      <RefColNames>cityid</RefColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+    </foreign-key>
+    <column id="58" parent="23" name="cityid">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+      <SequenceName>tarif_cityid_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;tarif_cityid_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="59" parent="23" name="periodstart">
+      <Position>2</Position>
+      <DataType>time(6)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="60" parent="23" name="periodend">
+      <Position>3</Position>
+      <DataType>time(6)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="61" parent="23" name="mincost">
+      <Position>4</Position>
+      <DataType>real|0</DataType>
+      <StateNumber>580</StateNumber>
+    </column>
+    <index id="62" parent="23" name="tarif_pkey">
+      <ObjectId>16664</ObjectId>
+      <ColNames>cityid
+periodstart
+periodend</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="63" parent="23" name="tarif_pkey">
+      <ObjectId>16665</ObjectId>
+      <ColNames>cityid
+periodstart
+periodend</ColNames>
+      <UnderlyingIndexName>tarif_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="64" parent="23" name="tarif_cityid_fkey">
+      <ObjectId>16666</ObjectId>
+      <ColNames>cityid</ColNames>
+      <RefTableId>16652</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>city</RefTableName>
+      <RefKeyName>city_pkey</RefKeyName>
+      <RefColNames>cityid</RefColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+    </foreign-key>
+    <column id="65" parent="24" name="username">
+      <Position>1</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+    </column>
+    <column id="66" parent="24" name="password">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>580</StateNumber>
+    </column>
+    <index id="67" parent="24" name="users_pkey">
+      <ObjectId>16714</ObjectId>
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="68" parent="24" name="users_pkey">
+      <ObjectId>16715</ObjectId>
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
