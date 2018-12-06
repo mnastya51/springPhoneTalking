@@ -5,25 +5,28 @@
   Time: 19:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>--%>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 
 
-<html>
-  <head>
-    <title>Телефонные переговоры</title>
-    <base href="/">
-    <%--<link rel="stylesheet" type="text/css" href="style.css"/>--%>
-    <%--<link rel="stylesheet" type="text/css" href="<c:url value="../pages/style.css"/>" />--%>
-    <style><%@include file="/WEB-INF/pages/style.css"%></style>
-  </head>
+<%--<html>--%>
+  <%--<head>--%>
+    <%--<title>Телефонные переговоры</title>--%>
+    <%--<base href="/">--%>
+    <%--&lt;%&ndash;<link rel="stylesheet" type="text/css" href="style.css"/>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<link rel="stylesheet" type="text/css" href="<c:url value="../pages/style.css"/>" />&ndash;%&gt;--%>
+    <%--<style><%@include file="/WEB-INF/pages/style.css"%></style>--%>
+  <%--</head>--%>
 
-  <body>
+  <%--<body>--%>
 
-  <div style="right: 68px"></div>
-  <div class = "mainPage">
-    <div class="titleMainPage">Телефонные переговоры</div>
-    <div class = "page" > <a href="/abonent.jsp">Абоненты</a></div>
-  </div>
-  </body>
-</html>
+  <%--<div style="right: 68px"></div>--%>
+  <%--<div class = "mainPage">--%>
+    <%--<div class="titleMainPage">Телефонные переговоры</div>--%>
+    <%--<div class = "page" > <a href="/abonent.jsp">Абоненты</a></div>--%>
+  <%--</div>--%>
+  <%--</body>--%>
+<%--</html>--%>
+
+<%@include file="./react/build/index.html"%>
+
