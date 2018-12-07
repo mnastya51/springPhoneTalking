@@ -14,7 +14,7 @@
             <property name="openjpa.RuntimeUnenhancedClasses" value="supported" />
             <property name="openjpa.QueryCache" value="false" />
             <property name="openjpa.DataCache" value="false" />
-            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/phoneTalking"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5433/phoneTalking"/>
             <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
             <property name="openjpa.ConnectionUserName" value="postgres"/>
             <property name="openjpa.ConnectionPassword" value="1"/>
