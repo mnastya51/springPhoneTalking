@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spring-security-loginform-xml.iml" filepath="$PROJECT_DIR$/spring-security-loginform-xml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/springPhoneTalking.iml" filepath="$PROJECT_DIR$/.idea/springPhoneTalking.iml" />
     </modules>
   </component>
 </project>
