@@ -87,7 +87,6 @@ class Form extends Component {
         </span>
 
         <Button label="Войти" class="login-button" type="submit" />
-        <p class="mt-5 mb-3 text-muted">© 2018</p>
         {errors}
       </form>
     )
