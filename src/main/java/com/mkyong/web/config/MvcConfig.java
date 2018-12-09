@@ -1,4 +1,4 @@
-package com.mkyong.web;
+package com.mkyong.web.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

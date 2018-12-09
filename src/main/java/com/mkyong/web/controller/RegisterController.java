@@ -1,20 +1,13 @@
 package com.mkyong.web.controller;
 
-import com.mkyong.web.dao.Dao;
 import com.mkyong.web.dao.DaoUser;
-import com.mkyong.web.models.Users;
-import org.apache.openjpa.util.ObjectExistsException;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.Query;
-import java.util.List;
-
-@Controller
+@RestController
 public class RegisterController {
 
     @RequestMapping(value = {"/register" }, method = RequestMethod.GET)

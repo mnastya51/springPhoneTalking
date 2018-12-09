@@ -7,7 +7,6 @@ import javax.persistence.Persistence;
 public class Dao {
     private static Dao instance;
     private EntityManagerFactory factory;
-    private EntityManager entityManager;
 
     public static Dao getInstance() {
         if (instance == null) {
@@ -19,8 +18,6 @@ public class Dao {
     private Dao() {
         factory = Persistence.
                 createEntityManagerFactory("NewPersistenceUnit", System.getProperties());
-
-        entityManager = factory.createEntityManager();
     }
 
     public EntityManagerFactory getFactory() {
@@ -28,6 +25,12 @@ public class Dao {
     }
 
     public EntityManager getEntityManager() {
-        return entityManager;
+        return factory.createEntityManager();
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        factory.close();
     }
 }

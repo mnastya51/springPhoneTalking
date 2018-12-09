@@ -8,6 +8,7 @@ public class City {
     private int cityid;
     private String cityname;
 
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
     @Column(name = "cityid", nullable = false)
     public int getCityid() {

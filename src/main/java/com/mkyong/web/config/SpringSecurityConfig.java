@@ -1,6 +1,6 @@
 package com.mkyong.web.config;
 
-import com.mkyong.web.service.MyUserDetailsService;
+import com.mkyong.web.config.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     @Qualifier("userDetailsService")
-    UserDetailsService userDetailsService;
+    UserDetailsService userDetailsService = new MyUserDetailsService();
 
     @Override
     public void configure(WebSecurity web) throws Exception {
