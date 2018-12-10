@@ -26,7 +26,7 @@ public class RegisterController {
         ModelAndView model = new ModelAndView();
         try{
             DaoUser.insertUserFromDao(username, password);
-            model.setViewName("login");
+//            model.setViewName("login");
             model.addObject("register", "User register");
         }
         catch (Exception e){

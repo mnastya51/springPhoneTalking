@@ -23,4 +23,9 @@ public class CityController {
     public Boolean addCity(@RequestParam("cityname") String cityname) {
         return DaoCity.insertCityToDao(cityname);
     }
+
+    @RequestMapping(value = "/deleteCity", params = "cityid", method = RequestMethod.GET)
+    public Boolean deleteCity(@RequestParam("cityid") String cityId) {
+        return DaoCity.deleteCity(Integer.valueOf(cityId));
+    }
 }

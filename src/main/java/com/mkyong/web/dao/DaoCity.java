@@ -13,7 +13,6 @@ public class DaoCity {
                 .getEntityManager();
         Query q = em.createQuery("SELECT item FROM City item");
         List resultList = q.getResultList();
-        em.close();
         if (resultList.size() == 0) {
             return null;
         } else {
@@ -32,10 +31,25 @@ public class DaoCity {
             em.persist(city);
             em.getTransaction().commit();
         } catch (Exception e) {
-            em.close();
             return false;
         }
-        em.close();
         return true;
+    }
+
+    public static Boolean deleteCity(int cityId) {
+        EntityManager em = Dao
+                .getInstance()
+                .getEntityManager();
+        City city = em.find(City.class, cityId);
+        if (city != null) {
+            em.getTransaction().begin();
+            try {
+                em.remove(city);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
+        } else return false;
     }
 }

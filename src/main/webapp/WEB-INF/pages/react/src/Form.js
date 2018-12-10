@@ -29,7 +29,7 @@ class Form extends Component {
       }).then(v => {
         if(v.redirected) {
           if (v.url.includes('error')) {
-            this.growl.show({severity: 'error', summary: 'Очень жаль', detail: 'Неправильный логин и/или пароль!'})
+            alert('Неправильный логин и/или пароль!')
           } else {
             this.props.updateData(true)
             this.props.history.push(v.url.replace('http://localhost:8080', ''))
@@ -60,7 +60,7 @@ class Form extends Component {
 
   renderError = () => {
     if (this.state.errcount || this.state.failure) {
-      this.growl.show({severity: 'danger', summary: 'Очень жаль', detail: 'Неправильный логин и/или пароль'})
+        alert('Неправильный логин и/или пароль!')
     }
   }
 
