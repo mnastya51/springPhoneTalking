@@ -127,7 +127,7 @@ class Discount extends Component {
     createSelectItems() {
         let items = [];
         for (let i = 0; i < this.state.cities.length; i++) {
-            items.push(<option key={this.state.cities[i].cityid}
+            items.push(<option class="p-inputtext p-component" key={this.state.cities[i].cityid}
                                value={this.state.cities[i].cityid}>{this.state.cities[i].cityname}</option>);
         }
         return items;
@@ -152,7 +152,7 @@ class Discount extends Component {
                     </Row>
                     <Row style={{display: this.state.editFieldsIsVisible ? 'flex' : 'none'}}>
                         <Col xs="auto">
-                            <Input class="p-inputtext p-component"
+                            <Input class="p-inputtext p-component" style={{backgroundColor: '#585858', color: '#dedede'}}
                                    type="select"
                                    onChange={(e) => this.setState({dropdownCityId: e.target.value})}
                                    label="Города">{this.createSelectItems()}</Input>
