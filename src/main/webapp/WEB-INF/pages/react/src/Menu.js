@@ -5,6 +5,7 @@ import Cities from './Cities';
 import Abonents from './Abonents';
 import createBrowserHistory from 'history/createBrowserHistory';
 import axios from 'axios';
+import Discount from "./Discount";
 
 
 class Menu extends Component {
@@ -84,7 +85,7 @@ class Menu extends Component {
                                     <a className="nav-link" onClick={(e) => this.history.push("/tarifs")}>Тарифы</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" onClick={(e) => this.history.push("/sales")}>Скидки</a>
+                                    <a className="nav-link" onClick={(e) => this.history.push("/discounts")}>Скидки</a>
                                 </li>
                             </ul>
                         </div>
@@ -95,6 +96,7 @@ class Menu extends Component {
                         <Route exact path="/" render={() => <Cities/>}/>
                         <Route exact path="/cities" render={() => <Cities/>}/>
                         <Route exact path="/abonents" render={() => <Abonents/>}/>
+                        <Route exact path="/discounts" render={() => <Discount/>}/>
                     </Switch>
                 </div>
             </Router>

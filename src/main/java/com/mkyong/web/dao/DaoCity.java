@@ -11,7 +11,7 @@ public class DaoCity {
         EntityManager em = Dao
                 .getInstance()
                 .getEntityManager();
-        Query q = em.createQuery("SELECT item FROM City item");
+        Query q = em.createQuery("SELECT item FROM City item order by item.cityname");
         List resultList = q.getResultList();
         if (resultList.size() == 0) {
             return null;

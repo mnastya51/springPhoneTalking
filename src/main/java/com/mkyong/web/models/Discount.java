@@ -5,10 +5,10 @@ import javax.persistence.*;
 @Entity
 public class Discount {
     private int discountid;
-    private int duration;
     private int amountdiscount;
     private City cityByCityid;
 
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
     @Column(name = "discountid", nullable = false)
     public int getDiscountid() {
@@ -17,16 +17,6 @@ public class Discount {
 
     public void setDiscountid(int discountid) {
         this.discountid = discountid;
-    }
-
-    @Basic
-    @Column(name = "duration", nullable = false)
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 
     @Basic
@@ -47,7 +37,6 @@ public class Discount {
         Discount discount = (Discount) o;
 
         if (discountid != discount.discountid) return false;
-        if (duration != discount.duration) return false;
         if (amountdiscount != discount.amountdiscount) return false;
 
         return true;
@@ -56,7 +45,6 @@ public class Discount {
     @Override
     public int hashCode() {
         int result = discountid;
-        result = 31 * result + duration;
         result = 31 * result + amountdiscount;
         return result;
     }
