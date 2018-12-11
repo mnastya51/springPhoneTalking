@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Form from './Form'
 import {Route, Router, Switch} from 'react-router'
 import Cities from './Cities';
+import Abonents from './Abonents';
 import createBrowserHistory from 'history/createBrowserHistory';
 import axios from 'axios';
 
@@ -93,6 +94,7 @@ class Menu extends Component {
                                                                        error={params.get('error')}/>}/>
                         <Route exact path="/" render={() => <Cities/>}/>
                         <Route exact path="/cities" render={() => <Cities/>}/>
+                        <Route exact path="/abonents" render={() => <Abonents/>}/>
                     </Switch>
                 </div>
             </Router>

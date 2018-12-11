@@ -1,9 +1,6 @@
 package com.mkyong.web.models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Abonent {
@@ -13,6 +10,7 @@ public class Abonent {
     private String address;
     private String passport;
 
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
     @Column(name = "abonentid", nullable = false)
     public int getAbonentid() {
