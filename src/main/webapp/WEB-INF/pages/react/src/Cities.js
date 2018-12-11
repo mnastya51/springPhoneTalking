@@ -4,6 +4,7 @@ import {ProgressSpinner} from 'primereact/progressspinner'
 import axios from 'axios';
 import {InputText} from 'primereact/inputtext'
 import {Button} from 'primereact/button'
+import {Col, Container, Row} from 'reactstrap'
 
 class Cities extends Component {
     constructor() {
@@ -77,21 +78,29 @@ class Cities extends Component {
         let div = (
             <div>
                 <ProgressSpinner style={{display: this.state.progress ? 'block' : 'none'}}/>
-                <div className="p-col-12 p-md-2" style={{display: this.state.editFieldsIsVisible ? 'none' : 'block'}}>
-                    <div className="p-inputgroup">
-                        <Button onClick={(e) => this.processAdd()} label="Добавить"/>
-                        <Button style={{ marginLeft: '5%'}} onClick={(e) => this.processDelete(this.state.selectedCity.cityid)} label="Удалить"/>
-                    </div>
-                </div>
-                <div className="p-col-20 p-md-2" style={{display: this.state.editFieldsIsVisible ? 'block' : 'none'}}>
-                    <div className="p-inputgroup">
-                        <span className="p-float-label">
-                            <InputText id="inputCity" name="username" value={this.state.addedCityName} onChange={(e) => this.setState({ addedCityName: e.target.value })}/>
-                            <label htmlFor="inputCity">Название</label>
-                        </span>
-                        <Button style={{display: 'block', height: '30px',  marginLeft: '5%'}} onClick={(e) => this.processIsAdded()} label="Сохранить"/>
-                    </div>
-                </div>
+                <Container style={{display: this.state.editFieldsIsVisible ? 'none' : 'block',  marginLeft: '0%', marginTop: '16px', marginBottom: '16px'}}>
+                    <Row>
+                        <Col xs="auto">
+                            <Button onClick={(e) => this.processAdd()} label="Добавить"/>
+                        </Col>
+                        <Col xs="auto">
+                            <Button onClick={(e) => this.processDelete(this.state.selectedCity.cityid)} label="Удалить"/>
+                        </Col>
+                    </Row>
+                </Container>
+                <Container style={{display: this.state.editFieldsIsVisible ? 'block' : 'none',  marginLeft: '0%', marginTop: '16px', marginBottom: '16px'}}>
+                    <Row>
+                        <Col xs="auto">
+                            <span className="p-float-label">
+                                <InputText id="inputCity" name="username" value={this.state.addedCityName} onChange={(e) => this.setState({ addedCityName: e.target.value })}/>
+                                <label htmlFor="inputCity">Название</label>
+                            </span>
+                        </Col>
+                        <Col xs="auto">
+                            <Button style={{display: 'block', height: '30px',  marginLeft: '5%'}} onClick={(e) => this.processIsAdded()} label="Сохранить"/>
+                        </Col>
+                    </Row>
+                </Container>
                 <DataTable styleClass="borderless" style={{display: this.state.progress ? 'none' : 'block'}}
                            value={this.state.cities} header="Города"
                            selection={this.state.selectedCity} onSelectionChange={e => this.setState({ selectedCity: e.data })}
