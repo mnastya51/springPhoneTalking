@@ -34,6 +34,7 @@ class Abonents extends Component {
                 this.setState({progress: true})
                 axios.get('http://localhost:8080/api/getAbonents').then(res => {
                     this.setState({abonents: res.data})
+                    this.setState({selectedAbonent: null})
                     this.setState({progress: false})
                 })
             }
@@ -83,6 +84,16 @@ class Abonents extends Component {
         this.setState({editFieldsIsVisible: true})
     }
 
+    processCancel() {
+        this.setState({editFieldsIsVisible: false})
+        this.setState({addedAbonentName: ''})
+        this.setState({addedPhone: ''})
+        this.setState({addedAddress: ''})
+        this.setState({addedPassport: ''})
+        this.setState({abonentEdit: null})
+        this.setState({selectedAbonent: null})
+    }
+
     processIsAddedOrEdited() {
         if (this.state.addedAbonentName && this.state.addedPhone && this.state.addedPhone.replace("_", "").length == 14) {
             if (this.state.abonentEdit) {
@@ -97,7 +108,7 @@ class Abonents extends Component {
                         this.setState({abonentEdit: null})
                         this.processUpdate()
                     } else {
-                        alert("Введены некорректные данные")
+                        alert("Введены некорректные данные или данный абонент уже существует")
                     }
                 })
             } else {
@@ -127,58 +138,64 @@ class Abonents extends Component {
 
     render() {
         let div = (
-            <div>
+            <div style={{display: this.state.progress ? 'none' : 'block'}}>
                 <ProgressSpinner style={{display: this.state.progress ? 'block' : 'none'}}/>
-                <Container style={{marginLeft: '0%', marginTop: '16px', marginBottom: '16px'}}>
-                    <Row style={{display: this.state.editFieldsIsVisible ? 'none' : 'flex'}}>
-                        <Col xs="auto">
-                            <Button onClick={(e) => this.processAddOrEdit()} label="Добавить"/>
-                        </Col>
-                        <Col xs="auto">
-                            <Button onClick={(e) => this.processEdit()} label="Изменить"/>
-                        </Col>
-                        <Col xs="auto">
-                            <Button onClick={(e) => this.processDelete(this.state.selectedAbonent.abonentid)}
-                                    label="Удалить"/>
-                        </Col>
-                    </Row>
-                    <Row style={{display: this.state.editFieldsIsVisible ? 'flex' : 'none'}}>
-                        <Col xs="auto">
-                            <MaskedInput class="p-inputtext p-component"
-                                         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                                         placeholder="Введите номер телефона"
-                                          id="inputPhone"
-                                          name="phone"
-                                          value={this.state.addedPhone}
-                                          onChange={(e) => this.setState({addedPhone: e.target.value})}/>
-                        </Col>
-                        <Col xs="auto">
-                            <span className="p-float-label">
-                                <InputText id="inputFio" name="fio" value={this.state.addedAbonentName}
-                                           onChange={(e) => this.setState({addedAbonentName: e.target.value})}/>
-                                <label htmlFor="inputFio">ФИО</label>
-                            </span>
-                        </Col>
-                        <Col xs="auto">
-                            <span className="p-float-label">
-                                <InputText id="inputAddress" name="address" value={this.state.addedAddress}
-                                           onChange={(e) => this.setState({addedAddress: e.target.value})}/>
-                                <label htmlFor="inputAddress">Адрес</label>
-                            </span>
-                        </Col>
-                        <Col xs="auto">
-                            <span className="p-float-label">
-                                <InputText id="inputPassport" name="passport" value={this.state.addedPassport}
-                                           onChange={(e) => this.setState({addedPassport: e.target.value})}/>
-                                <label htmlFor="inputPassport">Паспорт</label>
-                            </span>
-                        </Col>
-                        <Col xs="auto">
-                            <Button style={{display: 'block', height: '30px', marginLeft: '5%'}}
-                                    onClick={(e) => this.processIsAddedOrEdited()} label="Сохранить"/>
-                        </Col>
-                    </Row>
-                </Container>
+                <div>
+                    <Container style={{marginLeft: '0%', marginTop: '16px', marginBottom: '16px'}}>
+                        <Row style={{display: this.state.editFieldsIsVisible ? 'none' : 'flex'}}>
+                            <Col xs="auto">
+                                <Button onClick={(e) => this.processAddOrEdit()} label="Добавить"/>
+                            </Col>
+                            <Col xs="auto">
+                                <Button onClick={(e) => this.processEdit()} label="Изменить"/>
+                            </Col>
+                            <Col xs="auto">
+                                <Button onClick={(e) => this.processDelete(this.state.selectedAbonent.abonentid)}
+                                        label="Удалить"/>
+                            </Col>
+                        </Row>
+                        <Row style={{display: this.state.editFieldsIsVisible ? 'flex' : 'none'}}>
+                            <Col xs="auto">
+                                <MaskedInput class="p-inputtext p-component"
+                                             mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                                             placeholder="Введите номер телефона"
+                                              id="inputPhone"
+                                              name="phone"
+                                              value={this.state.addedPhone}
+                                              onChange={(e) => this.setState({addedPhone: e.target.value})}/>
+                            </Col>
+                            <Col xs="auto">
+                                <span className="p-float-label">
+                                    <InputText id="inputFio" name="fio" value={this.state.addedAbonentName}
+                                               onChange={(e) => this.setState({addedAbonentName: e.target.value})}/>
+                                    <label htmlFor="inputFio">ФИО</label>
+                                </span>
+                            </Col>
+                            <Col xs="auto">
+                                <span className="p-float-label">
+                                    <InputText id="inputAddress" name="address" value={this.state.addedAddress}
+                                               onChange={(e) => this.setState({addedAddress: e.target.value})}/>
+                                    <label htmlFor="inputAddress">Адрес</label>
+                                </span>
+                            </Col>
+                            <Col xs="auto">
+                                <span className="p-float-label">
+                                    <InputText id="inputPassport" name="passport" value={this.state.addedPassport}
+                                               onChange={(e) => this.setState({addedPassport: e.target.value})}/>
+                                    <label htmlFor="inputPassport">Паспорт</label>
+                                </span>
+                            </Col>
+                            <Col xs="auto">
+                                <Button style={{display: 'block', height: '30px', marginLeft: '5%'}}
+                                        onClick={(e) => this.processIsAddedOrEdited()} label="Сохранить"/>
+                            </Col>
+                            <Col xs="auto">
+                                <Button style={{display: 'block', height: '30px', marginLeft: '10%'}}
+                                        onClick={(e) => this.processCancel()} label="Отменить"/>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
                 <DataTable styleClass="borderless" style={{display: this.state.progress ? 'none' : 'block'}}
                            value={this.state.abonents} header="Абоненты"
                            selection={this.state.selectedAbonent}

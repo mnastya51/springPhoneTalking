@@ -19,7 +19,7 @@ public class AbonentController {
     }
 
     @RequestMapping(value = "/addAbonent", params = {"fio", "phone", "address", "passport"}, method = RequestMethod.GET)
-    public Boolean addCity(@RequestParam("fio") String fio,
+    public Boolean addAbonent(@RequestParam("fio") String fio,
                            @RequestParam("phone") String phone,
                            @RequestParam("address") String address,
                            @RequestParam("passport") String passport) {
@@ -27,7 +27,7 @@ public class AbonentController {
     }
 
     @RequestMapping(value = "/editAbonent", params = {"fio", "phone", "address", "passport", "abonentid"}, method = RequestMethod.GET)
-    public Boolean addCity(@RequestParam("fio") String fio,
+    public Boolean addAbonent(@RequestParam("fio") String fio,
                            @RequestParam("phone") String phone,
                            @RequestParam("address") String address,
                            @RequestParam("passport") String passport,
@@ -36,7 +36,7 @@ public class AbonentController {
     }
 
    @RequestMapping(value = "/deleteAbonent", params = "abonentid", method = RequestMethod.GET)
-    public Boolean deleteCity(@RequestParam("abonentid") String abonentid) {
+    public Boolean deleteAbonent(@RequestParam("abonentid") String abonentid) {
         return DaoAbonent.deleteAbonent(Integer.valueOf(abonentid));
     }
 }

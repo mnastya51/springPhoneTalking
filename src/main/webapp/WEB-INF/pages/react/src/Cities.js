@@ -45,7 +45,11 @@ class Cities extends Component {
             if (cityToDelete && cityToDelete.length > 0) {
                 cityToDelete.forEach(b => {
                     axios.get('http://localhost:8080/api/deleteCity?cityid=' + b.cityid).then(res => {
-                        this.processUpdate();
+                        if (res.data) {
+                            this.processUpdate();
+                        } else {
+                            alert("Данный город используется в других таблицах")
+                        }
                     })
                 })
             } else {
@@ -56,6 +60,12 @@ class Cities extends Component {
 
     processAdd(){
         this.setState({editFieldsIsVisible: true})
+    }
+
+    processCancel() {
+        this.setState({editFieldsIsVisible: false})
+        this.setState({selectedCity: null})
+        this.setState({addedCityName: ''})
     }
 
     processIsAdded(){
@@ -78,29 +88,35 @@ class Cities extends Component {
         let div = (
             <div>
                 <ProgressSpinner style={{display: this.state.progress ? 'block' : 'none'}}/>
-                <Container style={{display: this.state.editFieldsIsVisible ? 'none' : 'block',  marginLeft: '0%', marginTop: '16px', marginBottom: '16px'}}>
-                    <Row>
-                        <Col xs="auto">
-                            <Button onClick={(e) => this.processAdd()} label="Добавить"/>
-                        </Col>
-                        <Col xs="auto">
-                            <Button onClick={(e) => this.processDelete(this.state.selectedCity.cityid)} label="Удалить"/>
-                        </Col>
-                    </Row>
-                </Container>
-                <Container style={{display: this.state.editFieldsIsVisible ? 'block' : 'none',  marginLeft: '0%', marginTop: '16px', marginBottom: '16px'}}>
-                    <Row>
-                        <Col xs="auto">
-                            <span className="p-float-label">
-                                <InputText id="inputCity" name="username" value={this.state.addedCityName} onChange={(e) => this.setState({ addedCityName: e.target.value })}/>
-                                <label htmlFor="inputCity">Название</label>
-                            </span>
-                        </Col>
-                        <Col xs="auto">
-                            <Button style={{display: 'block', height: '30px',  marginLeft: '5%'}} onClick={(e) => this.processIsAdded()} label="Сохранить"/>
-                        </Col>
-                    </Row>
-                </Container>
+                <div style={{display: this.state.progress ? 'none' : 'block'}}>
+                    <Container style={{display: this.state.editFieldsIsVisible ? 'none' : 'block',  marginLeft: '0%', marginTop: '16px', marginBottom: '16px'}}>
+                        <Row>
+                            <Col xs="auto">
+                                <Button onClick={(e) => this.processAdd()} label="Добавить"/>
+                            </Col>
+                            <Col xs="auto">
+                                <Button onClick={(e) => this.processDelete(this.state.selectedCity.cityid)} label="Удалить"/>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Container style={{display: this.state.editFieldsIsVisible ? 'block' : 'none',  marginLeft: '0%', marginTop: '16px', marginBottom: '16px'}}>
+                        <Row>
+                            <Col xs="auto">
+                                <span className="p-float-label">
+                                    <InputText id="inputCity" name="username" value={this.state.addedCityName} onChange={(e) => this.setState({ addedCityName: e.target.value })}/>
+                                    <label htmlFor="inputCity">Название</label>
+                                </span>
+                            </Col>
+                            <Col xs="auto">
+                                <Button style={{display: 'block', height: '30px',  marginLeft: '5%'}} onClick={(e) => this.processIsAdded()} label="Сохранить"/>
+                            </Col>
+                            <Col xs="auto">
+                                <Button style={{display: 'block', height: '30px', marginLeft: '10%'}}
+                                        onClick={(e) => this.processCancel()} label="Отменить"/>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
                 <DataTable styleClass="borderless" style={{display: this.state.progress ? 'none' : 'block'}}
                            value={this.state.cities} header="Города"
                            selection={this.state.selectedCity} onSelectionChange={e => this.setState({ selectedCity: e.data })}

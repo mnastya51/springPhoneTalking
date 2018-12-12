@@ -73,9 +73,6 @@ class Menu extends Component {
                                     <a class="nav-link" onClick={(e) => this.history.push("/")}>Телефонные разговоры</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" onClick={(e) => this.history.push("/phones")}>Телефоны</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" onClick={(e) => this.history.push("/abonents")}>Абоненты</a>
                                 </li>
                                 <li className="nav-item">
@@ -102,28 +99,6 @@ class Menu extends Component {
             </Router>
         )
     }
-
-    items = [
-        {
-            label: 'Каталог',
-            command: () => {
-                this.history.push("/");
-            }
-        },
-        {
-            label: 'Корзина',
-            command: () => {
-                this.history.push("/cart");
-            }
-        },
-        {
-            label: 'Заказы',
-            command: () => {
-                this.history.push("/order");
-            }
-        }
-    ];
-
 }
 
 export default Menu

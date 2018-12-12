@@ -40,40 +40,40 @@ public class DaoDiscount {
         return true;
     }
 
-//    public static Boolean updateAbonent(String fio, String phone, String address, String passsport, int abonentid) {
-//        EntityManager em = Dao
-//                .getInstance()
-//                .getEntityManager();
-//        Abonent abonent = em.find(Abonent.class, abonentid);
-//        if (abonent != null) {
-//            em.getTransaction().begin();
-//            try {
-//                abonent.setFio(fio);
-//                abonent.setPhone(phone);
-//                abonent.setAddress(address);
-//                abonent.setPassport(passsport);
-//                em.getTransaction().commit();
-//            } catch (Exception e) {
-//                return false;
-//            }
-//            return true;
-//        } else return false;
-//    }
-//
-//    public static Boolean deleteAbonent(int abonentId) {
-//        EntityManager em = Dao
-//                .getInstance()
-//                .getEntityManager();
-//        Abonent abonent = em.find(Abonent.class, abonentId);
-//        if (abonent != null) {
-//            em.getTransaction().begin();
-//            try {
-//                em.remove(abonent);
-//                em.getTransaction().commit();
-//            } catch (Exception e) {
-//                return false;
-//            }
-//            return true;
-//        } else return false;
-//    }
+    public static Boolean updateDiscount(int amountdiscount, String cityid, int discountid) {
+        EntityManager em = Dao
+                .getInstance()
+                .getEntityManager();
+        City city = em.find(City.class, cityid);
+        Discount discount = em.find(Discount.class, discountid);
+        if (discount != null && city != null) {
+            em.getTransaction().begin();
+            try {
+                discount.setAmountdiscount(amountdiscount);
+                discount.setCityByCityid(city);
+                discount.setDiscountid(discountid);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
+        } else return false;
+    }
+
+    public static Boolean deleteDiscount(int discountid) {
+        EntityManager em = Dao
+                .getInstance()
+                .getEntityManager();
+        Discount discount = em.find(Discount.class, discountid);
+        if (discount != null) {
+            em.getTransaction().begin();
+            try {
+                em.remove(discount);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
+        } else return false;
+    }
 }

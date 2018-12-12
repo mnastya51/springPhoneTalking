@@ -23,17 +23,15 @@ public class DiscountController {
         return DaoDiscount.insertDiscount(Integer.valueOf(amountdiscount), cityid);
     }
 
-//    @RequestMapping(value = "/editAbonent", params = {"fio", "phone", "address", "passport", "abonentid"}, method = RequestMethod.GET)
-//    public Boolean addCity(@RequestParam("fio") String fio,
-//                           @RequestParam("phone") String phone,
-//                           @RequestParam("address") String address,
-//                           @RequestParam("passport") String passport,
-//                           @RequestParam("abonentid") String abonentid) {
-//        return DaoAbonent.updateAbonent(fio, phone, address, passport, Integer.valueOf(abonentid));
-//    }
-//
-//    @RequestMapping(value = "/deleteAbonent", params = "abonentid", method = RequestMethod.GET)
-//    public Boolean deleteCity(@RequestParam("abonentid") String abonentid) {
-//        return DaoAbonent.deleteAbonent(Integer.valueOf(abonentid));
-//    }
+    @RequestMapping(value = "/editDiscount", params = {"amountdiscount", "cityid", "discountid"}, method = RequestMethod.GET)
+    public Boolean updateDiscount(@RequestParam("amountdiscount") String amountdiscount,
+                           @RequestParam("cityid") String cityid,
+                           @RequestParam("discountid") String discountid) {
+        return DaoDiscount.updateDiscount(Integer.valueOf(amountdiscount),  cityid, Integer.valueOf(discountid));
+    }
+
+    @RequestMapping(value = "/deleteDiscount", params = "discountid", method = RequestMethod.GET)
+    public Boolean deletDiscount(@RequestParam("discountid") String discountid) {
+        return DaoDiscount.deleteDiscount(Integer.valueOf(discountid));
+    }
 }
