@@ -1,54 +1,53 @@
 package com.mkyong.web.models;
 
 import javax.persistence.*;
-import java.sql.Time;
 
 @Entity
-@IdClass(TarifPK.class)
 public class Tarif {
-    private int cityid;
-    private Time periodstart;
-    private Time periodend;
-    private Float mincost;
+    private int tarifid;
+    private String periodstart;
+    private String periodend;
+    private String mincost;
     private City cityByCityid;
 
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
-    @Column(name = "cityid", nullable = false)
-    public int getCityid() {
-        return cityid;
+    @Column(name = "tarifid", nullable = false)
+    public int getTarifid() {
+        return tarifid;
     }
 
-    public void setCityid(int cityid) {
-        this.cityid = cityid;
+    public void setTarifid(int tarifid) {
+        this.tarifid = tarifid;
     }
 
-    @Id
+    @Basic
     @Column(name = "periodstart", nullable = false)
-    public Time getPeriodstart() {
+    public String getPeriodstart() {
         return periodstart;
     }
 
-    public void setPeriodstart(Time periodstart) {
+    public void setPeriodstart(String periodstart) {
         this.periodstart = periodstart;
     }
 
-    @Id
+    @Basic
     @Column(name = "periodend", nullable = false)
-    public Time getPeriodend() {
+    public String getPeriodend() {
         return periodend;
     }
 
-    public void setPeriodend(Time periodend) {
+    public void setPeriodend(String periodend) {
         this.periodend = periodend;
     }
 
     @Basic
     @Column(name = "mincost", nullable = true, precision = 0)
-    public Float getMincost() {
+    public String getMincost() {
         return mincost;
     }
 
-    public void setMincost(Float mincost) {
+    public void setMincost(String mincost) {
         this.mincost = mincost;
     }
 
@@ -59,7 +58,7 @@ public class Tarif {
 
         Tarif tarif = (Tarif) o;
 
-        if (cityid != tarif.cityid) return false;
+        if (tarifid != tarif.tarifid) return false;
         if (periodstart != null ? !periodstart.equals(tarif.periodstart) : tarif.periodstart != null) return false;
         if (periodend != null ? !periodend.equals(tarif.periodend) : tarif.periodend != null) return false;
         if (mincost != null ? !mincost.equals(tarif.mincost) : tarif.mincost != null) return false;
@@ -69,7 +68,7 @@ public class Tarif {
 
     @Override
     public int hashCode() {
-        int result = cityid;
+        int result = tarifid;
         result = 31 * result + (periodstart != null ? periodstart.hashCode() : 0);
         result = 31 * result + (periodend != null ? periodend.hashCode() : 0);
         result = 31 * result + (mincost != null ? mincost.hashCode() : 0);

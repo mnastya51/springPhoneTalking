@@ -5,6 +5,9 @@ import axios from 'axios';
 import {InputText} from 'primereact/inputtext'
 import {Button} from 'primereact/button'
 import {Col, Container, Row} from 'reactstrap'
+import moment from 'moment';
+import {DatetimePickerTrigger} from 'rc-datetime-picker';
+import 'rc-datetime-picker/dist/picker.css';
 
 class Cities extends Component {
     constructor() {
@@ -15,7 +18,8 @@ class Cities extends Component {
             visible: false,
             editFieldsIsVisible: false,
             addedCityName: '',
-            selectedCity: null
+            selectedCity: null,
+            moment: moment()
         };
     }
 
@@ -84,7 +88,18 @@ class Cities extends Component {
         }
     }
 
+    handleChange = (moment) => {
+        this.setState({
+            moment
+        });
+    }
+
     render() {
+        const shortcuts = {
+            'Сегодня': moment(),
+            'Вчера': moment().subtract(1, 'days'),
+        };
+
         let div = (
             <div>
                 <ProgressSpinner style={{display: this.state.progress ? 'block' : 'none'}}/>
@@ -96,6 +111,14 @@ class Cities extends Component {
                             </Col>
                             <Col xs="auto">
                                 <Button onClick={(e) => this.processDelete(this.state.selectedCity.cityid)} label="Удалить"/>
+                            </Col>
+                            <Col xs="auto">
+                                <DatetimePickerTrigger class='datetime-picker'
+                                                       shortcuts={shortcuts}
+                                                       moment={this.state.moment}
+                                                       onChange={this.handleChange}>
+                                    <InputText value={this.state.moment.format('YYYY-MM-DD HH:mm')} readOnly/>
+                                </DatetimePickerTrigger>
                             </Col>
                         </Row>
                     </Container>

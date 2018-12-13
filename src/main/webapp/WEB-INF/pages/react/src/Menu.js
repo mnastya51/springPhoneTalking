@@ -6,6 +6,7 @@ import Abonents from './Abonents';
 import createBrowserHistory from 'history/createBrowserHistory';
 import axios from 'axios';
 import Discount from "./Discount";
+import Tarif from "./Tarif";
 
 
 class Menu extends Component {
@@ -94,6 +95,7 @@ class Menu extends Component {
                         <Route exact path="/cities" render={() => <Cities/>}/>
                         <Route exact path="/abonents" render={() => <Abonents/>}/>
                         <Route exact path="/discounts" render={() => <Discount/>}/>
+                        <Route exact path="/tarifs" render={() => <Tarif/>}/>
                     </Switch>
                 </div>
             </Router>
