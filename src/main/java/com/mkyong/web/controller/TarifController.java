@@ -12,29 +12,31 @@ import java.util.List;
 
 @RestController
 public class TarifController {
-    @RequestMapping(value = "/getTarif", method = RequestMethod.GET)
+    @RequestMapping(value = "/getTarif", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String getTarif() {
         List<Tarif> list = DaoTarif.getTarif();
         return list != null ? new Gson().toJson(list) : null;
     }
 
-    @RequestMapping(value = "/addTarif", params = {"mincost", "cityid", "periodstart","periodend"}, method = RequestMethod.GET)
-    public Boolean addDiscount(@RequestParam("mincost") String mincost,
+    @RequestMapping(value = "/addTarif", params = {"mincost", "cityid", "periodstart","periodend"}, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String addDiscount(@RequestParam("mincost") String mincost,
                                @RequestParam("cityid") String cityid,
                                @RequestParam("periodstart") String periodstart,
                                @RequestParam("periodend") String periodend) {
-        return DaoTarif.insertTarif(mincost, cityid, periodstart, periodend);
+        return DaoTarif.insertTarif(mincost, cityid, periodstart, periodend).toString();
     }
 
-//    @RequestMapping(value = "/editDiscount", params = {"amountdiscount", "cityid", "discountid"}, method = RequestMethod.GET)
-//    public Boolean updateDiscount(@RequestParam("amountdiscount") String amountdiscount,
-//                                  @RequestParam("cityid") String cityid,
-//                                  @RequestParam("discountid") String discountid) {
-//        return DaoDiscount.updateDiscount(Integer.valueOf(amountdiscount),  cityid, Integer.valueOf(discountid));
-//    }
-//
-//    @RequestMapping(value = "/deleteDiscount", params = "discountid", method = RequestMethod.GET)
-//    public Boolean deletDiscount(@RequestParam("discountid") String discountid) {
-//        return DaoDiscount.deleteDiscount(Integer.valueOf(discountid));
-//    }
+    @RequestMapping(value = "/editTarif", params = {"mincost", "cityid", "periodstart","periodend", "tarifid"}, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String updateTarif(@RequestParam("mincost") String mincost,
+                                  @RequestParam("periodstart") String periodstart,
+                                  @RequestParam("periodend") String periodend,
+                                  @RequestParam("tarifid") String tarifid,
+                                  @RequestParam("cityid") String cityid){
+        return DaoTarif.updateTarif(mincost, periodstart, periodend, cityid, Integer.valueOf(tarifid)).toString();
+    }
+
+    @RequestMapping(value = "/deleteTarif", params = "tarifid", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String deleteTarif(@RequestParam("tarifid") String tarifid) {
+        return DaoTarif.deleteTarif(Integer.valueOf(tarifid)).toString();
+    }
 }

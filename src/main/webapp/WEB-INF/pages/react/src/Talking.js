@@ -8,9 +8,8 @@ import NumericInput from 'react-numeric-input';
 import moment from "moment";
 import {DatetimePickerTrigger} from "rc-datetime-picker";
 import {InputText} from "primereact/inputtext";
-import {$, jQuery} from 'jquery';
 
-class Tarif extends Component {
+class Discount extends Component {
     constructor() {
         super();
         this.state = {
@@ -26,7 +25,6 @@ class Tarif extends Component {
             tarifEdit: null,
             dropdownCityId: ''
         };
-
     }
 
     componentDidMount() {
@@ -52,41 +50,39 @@ class Tarif extends Component {
         })
     }
 
-     processDelete() {
-          let tarifToDelete = this.state.selectedTarif;
+    /*  processDelete() {
+          let discountToDelete = this.state.selectedDiscount;
           const t = window.confirm("Вы действительно хотите удалить?");
           if (t) {
-              if (tarifToDelete && tarifToDelete.length > 0) {
-                  tarifToDelete.forEach(b => {
-                      axios.get('http://localhost:8080/api/deleteTarif?tarifid=' + b.tarifid).then(res => {
+              if (discountToDelete && discountToDelete.length > 0) {
+                  discountToDelete.forEach(b => {
+                      axios.get('http://localhost:8080/api/deleteDiscount?discountid=' + b.discountid).then(res => {
                           this.processUpdate();
                       })
                   })
               } else {
-                  alert("Выберете тариф (тарифы) для удаления")
+                  alert("Выберете скидку (скидки) для удаления")
               }
           }
       }
 
-     processEdit() {
-        let tarifToEdit = this.state.selectedTarif;
-        const t = window.confirm("Изменить первый выделенный элемент?");
-        if (t) {
-            if (tarifToEdit && tarifToEdit.length > 0) {
-                let tarif = tarifToEdit[0]
-                this.setState({tarifEdit: tarif})
-                this.setState({
-                    minCost: tarif.mincost,
-                    dropdownCityId: tarif.cityByCityid.cityid,
-                    periodStart: moment(tarif.periodstart),
-                    periodEnd: moment(tarif.periodend)
-                })
-                this.setState({editFieldsIsVisible: true})
-            } else {
-                alert("Выберете тариф для изменения")
-            }
-        }
-    }
+      processEdit() {
+          let discountToEdit = this.state.selectedDiscount;
+          const t = window.confirm("Изменить первый выделенный элемент?");
+          if (t) {
+              if (discountToEdit && discountToEdit.length > 0) {
+                  let discount = discountToEdit[0]
+                  this.setState({discountEdit: discount})
+                  this.setState({
+                      amountDiscount: discount.amountdiscount,
+                      dropdownCityId: discount.cityByCityid.cityid
+                  })
+                  this.setState({editFieldsIsVisible: true})
+              } else {
+                  alert("Выберете скидку для изменения")
+              }
+          }
+      }*/
 
     processAddOrEdit() {
         this.setState({editFieldsIsVisible: true})
@@ -97,27 +93,23 @@ class Tarif extends Component {
 
     processIsAddedOrEdited() {
         if (this.state.minCost && this.state.dropdownCityId) {
-            const perStart = this.state.periodStart.format('YYYY-MM-DD HH:mm')
-            const perEnd = this.state.periodEnd.format('YYYY-MM-DD HH:mm')
             if (this.state.tarifEdit) {
-                axios.get('http://localhost:8080/api/editTarif?mincost=' + this.state.minCost
-                    + '&periodstart=' + perStart
-                    +'&periodend=' + perEnd
-                    +'&cityid=' + this.state.dropdownCityId
-                    + '&tarifid=' + this.state.tarifEdit.tarifid).then(res => {
+                axios.get('http://localhost:8080/api/editDiscount?amountdiscount=' + this.state.amountDiscount +
+                    '&discountid=' + this.state.discountEdit.discountid
+                    + '&cityid=' + this.state.dropdownCityId).then(res => {
                     if (res.data) {
-                        this.setState({minCost: 0})
+                        this.setState({amountDiscount: 0})
                         this.setState({editFieldsIsVisible: false})
                         this.setState({dropdownCityId: ''})
-                        this.setState({periodStart: moment()})
-                        this.setState({periodEnd: moment()})
-                        this.setState({tarifEdit: null})
+                        this.setState({discountEdit: null})
                         this.processUpdate()
                     } else {
                         alert("Введены некорректные данные или данный тариф уже существует")
                     }
                 })
             } else {
+                const perStart = this.state.periodStart.format('YYYY-MM-DD HH:mm')
+                const perEnd = this.state.periodEnd.format('YYYY-MM-DD HH:mm')
                 axios.get('http://localhost:8080/api/addTarif?mincost=' + this.state.minCost
                     + '&periodstart=' + perStart
                     +'&periodend=' + perEnd
@@ -198,8 +190,6 @@ class Tarif extends Component {
     }
 
     render() {
-
-      // this.shortcuts-bar.css('display: none')
         const shortcuts = {
             'Сегодня': moment(),
             'Вчера': moment().subtract(1, 'days'),
@@ -234,8 +224,8 @@ class Tarif extends Component {
                                 </div>
                             </Col>
                             <Col xs="auto">
-                                <label style={{marginTop: '-45px', color: 'rgb(137, 137, 137)'}}>Начало периода</label>
-                                <div>
+                                <label style={{marginTop: '-45px'}}>Начало периода</label>
+                                <div style={{marginTop: '35px'}}>
                                     <DatetimePickerTrigger id='start' class='datetime-picker'
                                                            shortcuts={shortcuts}
                                                            moment={this.state.periodStart}
@@ -245,8 +235,8 @@ class Tarif extends Component {
                                 </div>
                             </Col>
                             <Col xs="auto">
-                                <label style={{marginTop: '-45px', color: 'rgb(137, 137, 137)'}}>Конец периода</label>
-                                <div>
+                                <label style={{marginTop: '-45px'}}>Конец периода</label>
+                                <div style={{marginTop: '35px'}}>
                                     <DatetimePickerTrigger id='end' class='datetime-picker'
                                                            shortcuts={shortcuts}
                                                            moment={this.state.periodEnd}
@@ -296,4 +286,4 @@ class Tarif extends Component {
     }
 }
 
-export default Tarif
+export default Discount

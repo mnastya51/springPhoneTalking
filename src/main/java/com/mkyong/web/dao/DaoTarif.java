@@ -42,18 +42,19 @@ public class DaoTarif {
         return true;
     }
 
-  /*  public static Boolean updateDiscount(int amountdiscount, String cityid, int discountid) {
+    public static Boolean updateTarif(String mincost, String periodstart, String periodend, String cityid, int tarifid) {
         EntityManager em = Dao
                 .getInstance()
                 .getEntityManager();
         City city = em.find(City.class, cityid);
-        Discount discount = em.find(Discount.class, discountid);
-        if (discount != null && city != null) {
+        Tarif tarif = em.find(Tarif.class, tarifid);
+        if (tarif != null && city != null) {
             em.getTransaction().begin();
             try {
-                discount.setAmountdiscount(amountdiscount);
-                discount.setCityByCityid(city);
-                discount.setDiscountid(discountid);
+                tarif.setMincost(mincost);
+                tarif.setCityByCityid(city);
+                tarif.setPeriodend(periodend);
+                tarif.setPeriodstart(periodstart);
                 em.getTransaction().commit();
             } catch (Exception e) {
                 return false;
@@ -62,20 +63,20 @@ public class DaoTarif {
         } else return false;
     }
 
-    public static Boolean deleteDiscount(int discountid) {
+    public static Boolean deleteTarif(int tarifid) {
         EntityManager em = Dao
                 .getInstance()
                 .getEntityManager();
-        Discount discount = em.find(Discount.class, discountid);
-        if (discount != null) {
+        Tarif tarif = em.find(Tarif.class, tarifid);
+        if (tarif != null) {
             em.getTransaction().begin();
             try {
-                em.remove(discount);
+                em.remove(tarif);
                 em.getTransaction().commit();
             } catch (Exception e) {
                 return false;
             }
             return true;
         } else return false;
-    }*/
+    }
 }

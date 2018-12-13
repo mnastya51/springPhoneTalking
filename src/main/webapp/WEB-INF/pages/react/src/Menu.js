@@ -56,6 +56,7 @@ class Menu extends Component {
 
     render() {
         return (
+
             <Router history={this.history}>
                 <div>
                     <nav class="navbar navbar-expand-lg navbar-dark" style={{backgroundColor: '#000051'}}>

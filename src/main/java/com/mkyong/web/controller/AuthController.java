@@ -13,7 +13,7 @@ import java.security.Principal;
 @RestController
 public class AuthController {
 
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String currentUser(HttpServletRequest request) {
 		Principal authentication = request.getUserPrincipal();
 		if (authentication != null) {
