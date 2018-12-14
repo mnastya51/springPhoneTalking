@@ -7,7 +7,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import axios from 'axios';
 import Discount from "./Discount";
 import Tarif from "./Tarif";
-
+import Talking from "./Talking";
 
 class Menu extends Component {
     history;
@@ -92,7 +92,8 @@ class Menu extends Component {
                     <Switch>
                         <Route exact path="/login" render={() => <Form updateData={this.updateData} {...props}
                                                                        error={params.get('error')}/>}/>
-                        <Route exact path="/" render={() => <Cities/>}/>
+                        <Route exact path="/" render={() => <Talking/>}/>
+                        <Route exact path="/talking" render={() => <Talking/>}/>
                         <Route exact path="/cities" render={() => <Cities/>}/>
                         <Route exact path="/abonents" render={() => <Abonents/>}/>
                         <Route exact path="/discounts" render={() => <Discount/>}/>

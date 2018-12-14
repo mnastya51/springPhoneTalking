@@ -95,7 +95,8 @@ class Abonents extends Component {
     }
 
     processIsAddedOrEdited() {
-        if (this.state.addedAbonentName && this.state.addedPhone && this.state.addedPhone.replace("_", "").length == 14) {
+        if (this.state.addedAbonentName && this.state.addedPhone && this.state.addedPhone.replace("_", "").length == 14 &&
+            (this.state.addedPassport.replace("_", "").length == 6 || !this.state.addedPassport)) {
             if (this.state.abonentEdit) {
                 axios.get('http://localhost:8080/api/editAbonent?fio=' + this.state.addedAbonentName + '&phone=' + this.state.addedPhone + '&address=' + this.state.addedAddress
                     + '&passport=' + this.state.addedPassport + '&abonentid=' + this.state.abonentEdit.abonentid).then(res => {
@@ -133,6 +134,8 @@ class Abonents extends Component {
                 alert("Заполните поле Телефон");
             else if (this.state.addedPhone.replace("_", "").length != 14)
                 alert("Введите телефон полностью");
+            else if (this.state.addedPassport.replace("_", "").length != 6)
+                alert("Введите номер паспорта полностью");
         }
     }
 
@@ -158,7 +161,7 @@ class Abonents extends Component {
                             <Col xs="auto">
                                 <MaskedInput class="p-inputtext p-component"
                                              mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                                             placeholder="Введите номер телефона"
+                                             placeholder="Телефон"
                                               id="inputPhone"
                                               name="phone"
                                               value={this.state.addedPhone}
@@ -179,11 +182,18 @@ class Abonents extends Component {
                                 </span>
                             </Col>
                             <Col xs="auto">
-                                <span className="p-float-label">
-                                    <InputText id="inputPassport" name="passport" value={this.state.addedPassport}
-                                               onChange={(e) => this.setState({addedPassport: e.target.value})}/>
-                                    <label htmlFor="inputPassport">Паспорт</label>
-                                </span>
+                                <MaskedInput class="p-inputtext p-component"
+                                             mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
+                                             placeholder="Паспорт"
+                                             id="inputPassport"
+                                             name="passport"
+                                             value={this.state.addedPassport}
+                                             onChange={(e) => this.setState({addedPassport: e.target.value})}/>
+                                {/*<span className="p-float-label">*/}
+                                    {/*<InputText id="inputPassport" name="passport" value={this.state.addedPassport}*/}
+                                               {/*onChange={(e) => this.setState({addedPassport: e.target.value})}/>*/}
+                                    {/*<label htmlFor="inputPassport">Паспорт</label>*/}
+                                {/*</span>*/}
                             </Col>
                             <Col xs="auto">
                                 <Button style={{display: 'block', height: '30px', marginLeft: '5%'}}

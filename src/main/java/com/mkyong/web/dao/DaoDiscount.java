@@ -12,7 +12,7 @@ public class DaoDiscount {
         EntityManager em = Dao
                 .getInstance()
                 .getEntityManager();
-        Query q = em.createQuery("SELECT d FROM Discount d");
+        Query q = em.createQuery("SELECT d FROM Discount d order by d.discountid");
         List resultList = q.getResultList();
         if (resultList.size() == 0) {
             return null;

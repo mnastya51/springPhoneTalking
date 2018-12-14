@@ -1,19 +1,17 @@
 package com.mkyong.web.models;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
 
 @Entity
 public class Talking {
     private int talkid;
-    private Float cost;
+    private String cost;
     private Integer kolmin;
-    private Date talkdate;
-    private Time talktime;
+    private String talktime;
     private Abonent abonentByAbonentid;
     private City cityByCityid;
 
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
     @Column(name = "talkid", nullable = false)
     public int getTalkid() {
@@ -25,12 +23,12 @@ public class Talking {
     }
 
     @Basic
-    @Column(name = "cost", nullable = true, precision = 0)
-    public Float getCost() {
+    @Column(name = "cost", nullable = true)
+    public String getCost() {
         return cost;
     }
 
-    public void setCost(Float cost) {
+    public void setCost(String cost) {
         this.cost = cost;
     }
 
@@ -45,22 +43,12 @@ public class Talking {
     }
 
     @Basic
-    @Column(name = "talkdate", nullable = true)
-    public Date getTalkdate() {
-        return talkdate;
-    }
-
-    public void setTalkdate(Date talkdate) {
-        this.talkdate = talkdate;
-    }
-
-    @Basic
     @Column(name = "talktime", nullable = true)
-    public Time getTalktime() {
+    public String getTalktime() {
         return talktime;
     }
 
-    public void setTalktime(Time talktime) {
+    public void setTalktime(String talktime) {
         this.talktime = talktime;
     }
 
@@ -74,7 +62,6 @@ public class Talking {
         if (talkid != talking.talkid) return false;
         if (cost != null ? !cost.equals(talking.cost) : talking.cost != null) return false;
         if (kolmin != null ? !kolmin.equals(talking.kolmin) : talking.kolmin != null) return false;
-        if (talkdate != null ? !talkdate.equals(talking.talkdate) : talking.talkdate != null) return false;
         if (talktime != null ? !talktime.equals(talking.talktime) : talking.talktime != null) return false;
 
         return true;
@@ -85,7 +72,6 @@ public class Talking {
         int result = talkid;
         result = 31 * result + (cost != null ? cost.hashCode() : 0);
         result = 31 * result + (kolmin != null ? kolmin.hashCode() : 0);
-        result = 31 * result + (talkdate != null ? talkdate.hashCode() : 0);
         result = 31 * result + (talktime != null ? talktime.hashCode() : 0);
         return result;
     }

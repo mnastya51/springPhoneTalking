@@ -1,18 +1,19 @@
 package com.mkyong.web.dao;
 
+import com.mkyong.web.models.Abonent;
 import com.mkyong.web.models.City;
-import com.mkyong.web.models.Tarif;
+import com.mkyong.web.models.Talking;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-public class DaoTarif {
-    public static List<Tarif> getTarif() {
+public class DaoTalking {
+    public static List<Talking> getTalking() {
         EntityManager em = Dao
                 .getInstance()
                 .getEntityManager();
-        Query q = em.createQuery("SELECT d FROM Tarif d order by d.tarifid");
+        Query q = em.createQuery("SELECT d FROM Talking d order by d.talkid");
         List resultList = q.getResultList();
         if (resultList.size() == 0) {
             return null;
@@ -20,20 +21,22 @@ public class DaoTarif {
             return resultList;
         }
     }
-    public static Boolean insertTarif(String mincost, String cityid, String periodstart, String periodend) {
+    public static Boolean insertTalking(String cost, String cityid, String abonentid, String period, int kolmin) {
         EntityManager em = Dao
                 .getInstance()
                 .getEntityManager();
         City city = em.find(City.class, cityid);
-        if (city != null) {
-            Tarif tarif = new Tarif();
-            tarif.setMincost(mincost);
-            tarif.setPeriodstart(periodstart);
-            tarif.setPeriodend(periodend);
-            tarif.setCityByCityid(city);
+        Abonent abonent = em.find(Abonent.class, abonentid);
+        if (city != null && abonent != null) {
+            Talking talking = new Talking();
+            talking.setCost(cost);
+            talking.setAbonentByAbonentid(abonent);
+            talking.setTalktime(period);
+            talking.setKolmin(kolmin);
+            talking.setCityByCityid(city);
             em.getTransaction().begin();
             try {
-                em.persist(tarif);
+                em.persist(talking);
                 em.getTransaction().commit();
             } catch (Exception e) {
                 return false;
@@ -42,19 +45,21 @@ public class DaoTarif {
         return true;
     }
 
-    public static Boolean updateTarif(String mincost, String periodstart, String periodend, String cityid, int tarifid) {
+    public static Boolean updateTalking(String cost, String cityid, String abonentid, String period, int kolmin, int talkid) {
         EntityManager em = Dao
                 .getInstance()
                 .getEntityManager();
         City city = em.find(City.class, cityid);
-        Tarif tarif = em.find(Tarif.class, tarifid);
-        if (tarif != null && city != null) {
+        Abonent abonent = em.find(Abonent.class, abonentid);
+        Talking talking = em.find(Talking.class, talkid);
+        if (talking != null && city != null && abonent != null) {
             em.getTransaction().begin();
             try {
-                tarif.setMincost(mincost);
-                tarif.setCityByCityid(city);
-                tarif.setPeriodend(periodend);
-                tarif.setPeriodstart(periodstart);
+                talking.setKolmin(kolmin);
+                talking.setCityByCityid(city);
+                talking.setTalktime(period);
+                talking.setAbonentByAbonentid(abonent);
+                talking.setCost(cost);
                 em.getTransaction().commit();
             } catch (Exception e) {
                 return false;
@@ -63,15 +68,15 @@ public class DaoTarif {
         } else return false;
     }
 
-    public static Boolean deleteTarif(int tarifid) {
+    public static Boolean deleteTalking(int talkingid) {
         EntityManager em = Dao
                 .getInstance()
                 .getEntityManager();
-        Tarif tarif = em.find(Tarif.class, tarifid);
-        if (tarif != null) {
+        Talking talking = em.find(Talking.class, talkingid);
+        if (talking != null) {
             em.getTransaction().begin();
             try {
-                em.remove(tarif);
+                em.remove(talking);
                 em.getTransaction().commit();
             } catch (Exception e) {
                 return false;

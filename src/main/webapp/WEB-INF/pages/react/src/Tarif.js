@@ -144,9 +144,11 @@ class Tarif extends Component {
 
     processCancel() {
         this.setState({editFieldsIsVisible: false})
-        this.setState({amountDiscount: 0})
+        this.setState({minCost: 0})
+        this.setState({periodStart: moment()})
+        this.setState({periodEnd: moment()})
         this.setState({dropdownCityId: ''})
-        this.setState({discountEdit: null})
+        this.setState({tarifEdit: null})
         this.setState({selectedTarif: null})
     }
 
